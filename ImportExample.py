@@ -28,3 +28,4 @@ string2 = "'I'M NOT YELLING', she said. Though we knew she was. 6 - 5 +54.6"
 #removes everything except numbers 
 new2 = re.sub('[^0-9]','',string2)
 print(new2)
+
