@@ -11,6 +11,14 @@ def my_function2(int1,int2):
 def print_something(name = "Someone",age = "Unknown"):
     print("My name is",name,"and my age is",age)
 
+#infinite arguments
+def print_people(*people):
+    for person in people:
+        print("This person is",person)
+
+print_people("João","Joana","Maria","Manuel","Fernando")
+
+
 #Keyword arguments
 print_something(age = 27)
 print_something(name = "Joana")
