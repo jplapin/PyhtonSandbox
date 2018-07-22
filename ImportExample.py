@@ -1,6 +1,5 @@
-
-
 import re
+
 
 string = "'I'M NOT YELLING', she said. Though we knew she was."
 
