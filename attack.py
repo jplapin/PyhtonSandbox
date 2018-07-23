@@ -1,3 +1,10 @@
+from Classes.enemy import Enemy
+
+enemy = Enemy(200,60)
+print("Hp",enemy.get_hp())
+
+'''
+#Old code just for training purposes 
 import random
 
 
@@ -33,7 +40,7 @@ enemy2 = Enemy(75,90,2)
 enemy2.getAtkh()
 enemy2.getAtkl()
 enemy2.getHp()
-'''
+
 playerhp = 260 #player health points
 enemytkl = 60 #enemy attack low
 enemytkh = 80 #enemy attack high
