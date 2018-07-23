@@ -8,9 +8,10 @@ class Enemy:
     hp = 200
 
     #runs when the class is been instantiated or when the object is created
-    def __init__(self, atkl, atkh):
+    def __init__(self, atkl, atkh, enemyNum):
         self.atkl = atkl
         self.atkh = atkh
+        self.enemyNum = enemyNum
 
     def getAtkl(self):
         print("Atack is",self.atkl)
@@ -19,20 +20,20 @@ class Enemy:
         print("Atack is",self.atkh)
 
     def getHp(self):
-        print("Hp is",self.hp)
-    
+        print("Hp enemy",str(self.enemyNum) ,"is",self.hp)
+
 #instantiates the class 
 #2 enemies with diferent attacks
-enemy1 = Enemy(40,49)
+enemy1 = Enemy(40,49,1)
 enemy1.getAtkh()
 enemy1.getAtkl()
 enemy1.getHp()
 
-enemy2 = Enemy(75,90)
+enemy2 = Enemy(75,90,2)
 enemy2.getAtkh()
 enemy2.getAtkl()
 enemy2.getHp()
-
+'''
 playerhp = 260 #player health points
 enemytkl = 60 #enemy attack low
 enemytkh = 80 #enemy attack high
@@ -50,3 +51,4 @@ while playerhp > 0:
     if playerhp == 30:
         print("You have low health. You've been transported to the nearest inn")
         break #to stop the loop, otherwise it's an infinite loop
+'''
