@@ -1,10 +1,13 @@
 import random
 
 
-#simple class exemple
+#simple class example
 class Enemy:
-    atkl = 60
-    atkh = 80
+
+    #runs when the class is been instantiated or when the object is created
+    def __init__(self, atkl, atkh):
+        self.atkl = atkl
+        self.atkh = atkh
 
     def getAtkl(self):
         print(self.atkl)
@@ -12,16 +15,15 @@ class Enemy:
     def getAtkh(self):
         print(self.atkh)
     
-#instanciates the class 
-#2 enemies 
-enemy1 = Enemy()
+#instantiates the class 
+#2 enemies with diferent attacks
+enemy1 = Enemy(40,49)
 enemy1.getAtkh()
 enemy1.getAtkl()
 
-enemy2 = Enemy()
+enemy2 = Enemy(75,90)
 enemy2.getAtkh()
 enemy2.getAtkl()
-
 
 
 playerhp = 260 #player health points
