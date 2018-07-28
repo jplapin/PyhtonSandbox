@@ -1,5 +1,9 @@
 import random
+import colorama
 
+
+
+colorama.init()
 
 #assigns variables to colors in terminal
 class bcolors:
@@ -8,7 +12,7 @@ class bcolors:
     OKGREEN = '\033[92m'
     WARNiNG = '\033[93m'
     FAIL = '\033[91m'
-    ENDC = '\033[0m'
+    ENDC = '\033[0m' #needed to end the color code
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
@@ -33,7 +37,7 @@ class Person:
         return random.randrange(mgl,mgh)
 
     def take_damage(self,dmg):
-        self.hp = dmg
+        self.hp -= dmg
         if self.hp < 0:
             self.hp = 0
         return self.hp
@@ -61,13 +65,14 @@ class Person:
 
     def choose_action(self):
         i = 1
+        print(bcolors.OKBLUE + bcolors.BOLD + "Actions" + bcolors.ENDC)
         for item in self.actions:
             print(str(i) + ":",item)
             i+=1
     
     def chose_spell(self):
         i = 1
-        print("magic")
+        print(bcolors.OKBLUE + bcolors.BOLD + "Magic" + bcolors.ENDC)
         for spell in self.magic:
             print(str(i) + ":",spell["name"],"(cost:",str(spell["mp"])+")")
             i+=1

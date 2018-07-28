@@ -7,3 +7,4 @@ class Enemy:
 
     def get_hp(self):
         return self.hp
+        
