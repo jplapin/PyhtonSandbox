@@ -51,11 +51,11 @@ class Person:
     def get_mp(self):
         return self.mp
 
-    def get__max_mp(self):
+    def get_max_mp(self):
         return self.maxmp
 
     def reduce_mp(self, cost):
-        self.hp -= cost
+        self.mp -= cost
 
     def get_spell_name(self,i):
         return self.magic[i]["name"]
@@ -74,6 +74,6 @@ class Person:
         i = 1
         print(bcolors.OKBLUE + bcolors.BOLD + "Magic" + bcolors.ENDC)
         for spell in self.magic:
-            print(str(i) + ":",spell["name"],"(cost:",str(spell["mp"])+")")
+            print(str(i) + ":",spell["name"],"(cost:",str(spell["cost"])+")")
             i+=1
 
