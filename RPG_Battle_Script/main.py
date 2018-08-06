@@ -56,7 +56,7 @@ player3 = Person("PL3", 3200, 120, 60, 34, player_spells, player_items)
 
 players = [player1, player2, player3]
 
-enemy = Person("CPU-1", 1200, 250, 45, 25, [], [])
+enemy = Person("CPU-1", 11000, 250, 450, 25, [], [])
 
 running = True
 i = 0

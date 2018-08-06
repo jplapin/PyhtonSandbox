@@ -87,46 +87,37 @@ class Person:
                   " - ", item["item"].description, " (x" + str(item["quantity"])+")")
             i += 1
 
-    def get_stats(self):
-        hp_bar = ""
-        mp_bar = ""
-        # health points bar calculation
-        hp_bar_points = (self.hp/self.maxhp)*100/5
-        while hp_bar_points > 0:
-            hp_bar += "█"
-            hp_bar_points -= 1
-        while len(hp_bar) < 20:
-            hp_bar += " "
-        # magic points bar calculation
-        mp_bar_points = (self.mp/self.maxmp)*100/10
-        while mp_bar_points > 0:
-            mp_bar += "█"
-            mp_bar_points -= 1
-        while len(mp_bar) < 10:
-            mp_bar += " "
+    def fill_up_bar(self, bar_lenght, current_points, max_points):
+        bar = ""
+        bar_points = (current_points/max_points)*100/(100/bar_lenght)
+        while bar_points > 0:
+            bar += "█"
+            bar_points -= 1
+        while len(bar) < bar_lenght:
+            bar += " "
+        return bar
 
-        # necessary to put empty spaces when the pontuation falls below a certain value
-        hp_string = str(self.hp)+"/"+str(self.maxhp)
-        current_hp = ""
-        if len(hp_string) < 9:
-            decreased_hp = 9 - len(hp_string)
-            while decreased_hp > 0:
-                current_hp += " "
-                decreased_hp -= 1
-            current_hp += hp_string
-        else:
-            current_hp = hp_string
-
-        mp_string = str(self.mp)+"/" + str(self.maxmp)
-        current_mp = ""
-        if len(mp_string) < 7:
-            decreased_mp = 7 - len(mp_string)
+    def leading_spaces_bar(self, points_str, points_size):
+        current_spaces = ""
+        if len(points_str) < points_size:
+            decreased_mp = points_size - len(points_str)
             while decreased_mp > 0:
-                current_mp += " "
+                current_spaces += " "
                 decreased_mp -= 1
-            current_mp += mp_string
+            current_spaces += points_str
         else:
-            current_mp = mp_string
+            current_spaces = points_str
+        return current_spaces
+
+    def get_stats(self):
+        hp_bar = self.fill_up_bar(20, self.hp, self.maxhp)
+        mp_bar = self.fill_up_bar(10, self.mp, self.maxmp)
+
+        hp_string = str(self.hp)+"/"+str(self.maxhp)
+        mp_string = str(self.mp)+"/" + str(self.maxmp)
+
+        current_hp = self.leading_spaces_bar(hp_string, 9)
+        current_mp = self.leading_spaces_bar(mp_string, 7)
 
         print("NAME                      HP                        MP")
         print("                    ____________________               __________")
