@@ -1,6 +1,7 @@
 from Classes.game import Person, bcolors
 from Classes.magic import Spell
 from Classes.inventory import Item
+import random
 
 
 """
@@ -61,19 +62,20 @@ enemy = Person("CPU-1", 11000, 250, 450, 25, [], [])
 running = True
 i = 0
 
-separator = "="*25
+separator = "="*70
 
 print(bcolors.FAIL + bcolors.BOLD + "AN ENEMY ATTACKS!" + bcolors.ENDC)
 
 while running:
     print(separator)
     for player in players:
-        player.get_stats()
+        print("\n")
+        player.get_player_stats()
     print("\n")
+    enemy.get_enemy_stats()
     for player in players:
         print("\n")
-        player.get_stats()
-        print("\n")
+        player.get_player_stats()
         player.choose_action()
         # to get the correct action in the list we have to subtract 1
         choice = int(input("Choose Action :")) - 1
@@ -124,8 +126,13 @@ while running:
                 print(bcolors.OKGREEN+"\n" + item.name +
                       " heals for "+str(item.prop), " HP."+bcolors.ENDC)
             elif item.type == "elixir":
-                player.hp = player.maxhp
-                player.mp = player.maxmp
+                if item.name == "megaelixir":
+                    for player in players:
+                        player.hp = player.maxhp
+                        player.mp = player.maxmp
+                else:
+                    player.hp = player.maxhp
+                    player.mp = player.maxmp
                 print(bcolors.OKGREEN+"\n" + item.name +
                       " Fully Restored HP/MP  " + bcolors.ENDC)
             elif item.type == "attack":
@@ -134,18 +141,13 @@ while running:
                       str(item.prop), " points of damage." + bcolors.ENDC)
 
     enemy_choice = 1
+    target = random.randrange(0, 3)
 
     enemy_dmg = enemy.generate_damage()
-    player1.take_damage(enemy_dmg)
+    players[target].take_damage(enemy_dmg)
     print("Enemy attacks for", enemy_dmg, "points of Damage.")
 
-    print(separator)
-    print("Enemy HP : " + bcolors.FAIL+str(enemy.get_hp()) +
-          "/"+str(enemy.get_max_hp())+bcolors.ENDC+"\n")
-    print("Your HP : " + bcolors.OKGREEN+str(player.get_hp()) +
-          "/"+str(player.get_max_hp())+bcolors.ENDC+"\n")
-    print("Your MP : " + bcolors.OKBLUE+str(player.get_mp()) +
-          "/"+str(player.get_max_mp())+bcolors.ENDC+"\n")
+    print(separator+"\n")
 
     if enemy.get_hp() == 0:
         print(bcolors.OKGREEN + "You Win!" + bcolors.ENDC)
@@ -153,3 +155,4 @@ while running:
     elif player.get_hp() == 0:
         print(bcolors.FAIL + "Your enemy has defeated you!" + bcolors.ENDC)
         running = False
+    print("\n"+separator+"\n")

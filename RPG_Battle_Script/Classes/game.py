@@ -109,7 +109,7 @@ class Person:
             current_spaces = points_str
         return current_spaces
 
-    def get_stats(self):
+    def get_player_stats(self):
         hp_bar = self.fill_up_bar(20, self.hp, self.maxhp)
         mp_bar = self.fill_up_bar(10, self.mp, self.maxmp)
 
@@ -119,8 +119,17 @@ class Person:
         current_hp = self.leading_spaces_bar(hp_string, 9)
         current_mp = self.leading_spaces_bar(mp_string, 7)
 
-        print("NAME                      HP                        MP")
+        print("NAME                         HP                            MP")
         print("                    ____________________               __________")
         print(bcolors.BOLD + self.name + ":     " + current_hp + " |" +
               bcolors.OKGREEN+hp_bar+bcolors.ENDC+bcolors.BOLD + "|     " +
-              current_mp + " |"+bcolors.OKBLUE+mp_bar+bcolors.ENDC+"|")
+              current_mp + " |"+bcolors.OKBLUE+mp_bar+bcolors.ENDC+bcolors.BOLD+"|"+bcolors.ENDC)
+
+    def get_enemy_stats(self):
+        hp_enemy_bar = self.fill_up_bar(45, self.hp, self.maxhp)
+        hp__enemy_string = str(self.hp)+"/"+str(self.maxhp)
+        current_hp_enemy = self.leading_spaces_bar(hp__enemy_string, 11)
+        print("NAME                                      HP                     ")
+        print("                    _____________________________________________")
+        print(bcolors.BOLD + self.name + ": " + current_hp_enemy + " |" +
+              bcolors.FAIL+hp_enemy_bar+bcolors.ENDC+bcolors.BOLD + "|" + bcolors.ENDC)
