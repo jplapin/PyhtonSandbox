@@ -87,6 +87,16 @@ class Person:
                   " - ", item["item"].description, " (x" + str(item["quantity"])+")")
             i += 1
 
+    def choose_target(self, enemies):
+        i = 1
+        print("\n"+bcolors.FAIL + bcolors.BOLD + "Target:" + bcolors.ENDC)
+        for enemy in enemies:
+            if enemy.get_hp() != 0:
+                print("    "+str(i) + ".", enemy.name)
+                i += 1
+        choice = int(input("Choose your target: "))-1
+        return choice
+
     def fill_up_bar(self, bar_lenght, current_points, max_points):
         bar = ""
         bar_points = (current_points/max_points)*100/(100/bar_lenght)
@@ -119,8 +129,8 @@ class Person:
         current_hp = self.leading_spaces_bar(hp_string, 9)
         current_mp = self.leading_spaces_bar(mp_string, 7)
 
-        print("NAME                         HP                            MP")
-        print("                    ____________________               __________")
+        print("NAME                             HP                             MP")
+        print("                         ____________________               __________")
         print(bcolors.BOLD + self.name + ":     " + current_hp + " |" +
               bcolors.OKGREEN+hp_bar+bcolors.ENDC+bcolors.BOLD + "|     " +
               current_mp + " |"+bcolors.OKBLUE+mp_bar+bcolors.ENDC+bcolors.BOLD+"|"+bcolors.ENDC)
@@ -133,3 +143,15 @@ class Person:
         print("                    _____________________________________________")
         print(bcolors.BOLD + self.name + ": " + current_hp_enemy + " |" +
               bcolors.FAIL+hp_enemy_bar+bcolors.ENDC+bcolors.BOLD + "|" + bcolors.ENDC)
+
+    def choose_enemy_spell(self):
+        running = True
+        while running:
+            magic_choice = random.randrange(0, len(self.magic))
+            spell = self.magic[magic_choice]
+            magic_dmg = spell.generate_damage()
+            health_percentage = self.hp / self.maxhp * 100
+            if self.mp < spell.cost or spell.type == "white" and health_percentage > 50:
+                pass
+            else:
+                return spell, magic_dmg
