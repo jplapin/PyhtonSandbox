@@ -1,3 +1,6 @@
 *.pyc
 *.pyo
-.vscode
+*.txt
+vscode/
+testenv/
+tasks.json
