@@ -1,6 +1,9 @@
 *.pyc
 *.pyo
 *.txt
-vscode/
+.vscode/
 testenv/
+__pycache__/
 tasks.json
+google_page.html
+.vscode/settings.json
