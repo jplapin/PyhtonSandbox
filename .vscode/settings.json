@@ -1,5 +1,6 @@
 {
   "terminal.integrated.shell.windows":
     "C:\\WINDOWS\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "terminal.integrated.shell.linux": "C:\\Program Files\\Git\\bin\\bash.exe"
 }
