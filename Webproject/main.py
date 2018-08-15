@@ -1,9 +1,9 @@
 import web
 
 # the (.*) means that accept everything after the slash
-urls = {
+urls = (
     "/(.*)/(.*)", "index"
-}
+)
 
 # app = web.application(urls, globals())
 render = web.template.render("resources/")
