@@ -3,6 +3,7 @@
 *.txt
 .vscode/
 testenv/
+TelegramBots/env
 __pycache__/
 tasks.json
 google_page.html
