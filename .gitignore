@@ -4,6 +4,7 @@
 .vscode/
 testenv/
 __pycache__/
+TelegramBots/env
 tasks.json
 google_page.html
 .vscode/settings.json
