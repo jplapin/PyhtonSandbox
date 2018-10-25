@@ -22,8 +22,12 @@ def get_delete_update_book(request, pk):
     elif request.method == 'DELETE':
         return Response({})
     # update details of a single book
-    elif request.method == 'PUT':
-        return Response({})
+    if request.method == 'PUT':
+        serializer = BookSerializer(book, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])

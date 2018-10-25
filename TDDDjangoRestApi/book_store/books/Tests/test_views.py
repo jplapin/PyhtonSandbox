@@ -99,3 +99,42 @@ class CreateNewBookTest(TestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class UpdateSingleBookTest(TestCase):
+    """ Test module for updating an existing book record """
+
+    def setUp(self):
+        self.hobbit = Book.objects.create(
+            title='The Hobbit', isbn='0618260307', author='J. R. R. Tolkien', num_pages=310, year_published=1937)
+        self.androids = Book.objects.create(
+            title='Do Androids Dream of Electric Sheep?', isbn='9780345404473', author='Philip K. Dick', num_pages=210, year_published=1968)
+        self.valid_payload = {
+            'title': 'Nineteen Eighty-Four',
+            'isbn': '9780451524935',
+            'author': 'George Orwell',
+            'num_pages': 328,
+            'year_published': 1949
+        }
+        self.invalid_payload = {
+            'title': '',
+            'isbn': '9780451524935',
+            'author': 'George Orwell',
+            'num_pages': 328,
+            'year_published': 1949
+        }
+
+    def test_valid_update_book(self):
+        response = client.put(
+            reverse('get_delete_update_book', kwargs={'pk': self.hobbit.pk}),
+            data=json.dumps(self.valid_payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_invalid_update_book(self):
+        response = client.put(
+            reverse('get_delete_update_book', kwargs={'pk': self.hobbit.pk}),
+            data=json.dumps(self.invalid_payload),
+            content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
