@@ -11,7 +11,7 @@ client = Client()
 
 
 class GetAllBooksTest(TestCase):
-    """ Test module for GET all puppies API """
+    """ Test module for GET all books API """
 
     def setUp(self):
         Book.objects.create(
@@ -33,3 +33,33 @@ class GetAllBooksTest(TestCase):
         serializer = BookSerializer(books, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class GetSingleBookTest(TestCase):
+    """ Test module for GET single book API """
+
+    def setUp(self):
+        self.hobbit =  Book.objects.create(
+            title='The Hobbit', isbn='0618260307', author='J. R. R. Tolkien', num_pages=310, year_published=1937)
+        self.androids = Book.objects.create(
+            title='Do Androids Dream of Electric Sheep?', isbn='9780345404473', author='Philip K. Dick', num_pages=210, year_published=1968)
+        self.neuromancer = Book.objects.create(
+            title='Neuromancer', isbn='9780441569595', author='William Gibson', num_pages=271, year_published=1984)
+        self.dune = Book.objects.create(
+            title='Dune', isbn='9789896372484', author='Frank Herbert', num_pages=412, year_published=1965)
+        self.nieifour = Book.objects.create(
+            title='Nineteen Eighty-Four', isbn='9780451524935', author='George Orwell', num_pages=328, year_published=1949)
+
+
+    def test_get_valid_single_book(self):
+        response = client.get(
+            reverse('get_delete_update_book', kwargs={'pk': self.hobbit.pk}))
+        book = Book.objects.get(pk=self.hobbit.pk)
+        serializer = BookSerializer(book)
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_get_invalid_single_book(self):
+        response = client.get(
+            reverse('get_delete_update_book', kwargs={'pk': 30}))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
