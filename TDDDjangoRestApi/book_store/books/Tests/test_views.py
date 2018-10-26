@@ -138,3 +138,23 @@ class UpdateSingleBookTest(TestCase):
             data=json.dumps(self.invalid_payload),
             content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class DeleteSingleBookTest(TestCase):
+    """ Test module for deleting an existing book record """
+
+    def setUp(self):
+        self.hobbit = Book.objects.create(
+            title='The Hobbit', isbn='0618260307', author='J. R. R. Tolkien', num_pages=310, year_published=1937)
+        self.androids = Book.objects.create(
+            title='Do Androids Dream of Electric Sheep?', isbn='9780345404473', author='Philip K. Dick', num_pages=210, year_published=1968)
+
+    def test_valid_delete_book(self):
+        response = client.delete(
+            reverse('get_delete_update_book', kwargs={'pk': self.hobbit.pk}))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_invalid_delete_book(self):
+        response = client.delete(
+            reverse('get_delete_update_book', kwargs={'pk': 30}))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

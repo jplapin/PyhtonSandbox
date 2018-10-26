@@ -19,8 +19,9 @@ def get_delete_update_book(request, pk):
         serializer = BookSerializer(book)
         return Response(serializer.data)
     # delete a single book
-    elif request.method == 'DELETE':
-        return Response({})
+    if request.method == 'DELETE':
+        book.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     # update details of a single book
     if request.method == 'PUT':
         serializer = BookSerializer(book, data=request.data)
