@@ -1,0 +1,62 @@
+
+body{
+    background-color:	#D3D3D3 !important;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+  background-image: url("/static/movies.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+.card{
+    float:left;
+    width: 33.333%;
+    display: inline-block;
+    padding: .75rem;
+    margin-bottom: 2rem;
+}
+
+.card > div {
+    margin-bottom: .75rem;
+    width: 356px; 
+    height: 280px;
+    object-fit: cover;
+}
+
+.card-text{
+    font-size: 90%;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}

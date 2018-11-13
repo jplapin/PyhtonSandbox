@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+        <section class="jumbotron text-center">
+            <div class="container">
+            <!-- {% load static %}
+                <img src="{% static 'movies.jpg' %}">-->
+                <h1 class="jumbotron-heading">Movie Blog</h1>
+                <p class="lead text-muted">My Movie Blog.</p>
+            </div>
+        </section>
+        <div class="album text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1 class="thin-center">Recent Posts</h1>
+                        <br>
+                    </div>
+                    {% for post in posts %}
+                    <!--<div class="col-md-4">-->
+                        <div class="card">
+                            <!--<img  src="{{post.image.url}}" />-->
+                            <div style="background-image:url({{post.image.url}})">
+                                <h3 class="card-text"><a href="/post/{{post.slug}}">{{post.title}}</a></h3>
+                            </div>
+                            <p>{{post.summary}}</p>
+                        </div>
+                    <!--</div>-->
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>
