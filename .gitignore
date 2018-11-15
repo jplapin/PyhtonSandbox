@@ -22,3 +22,4 @@ fly.png
 Assist/assist
 DjangoTest/venv
 db.sqlite3
+.env
